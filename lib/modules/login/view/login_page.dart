@@ -16,10 +16,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Logger logger = Logger();
   LoginController controller = inject<LoginController>();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+
+  Logger logger = Logger();
 
   @override
   void initState() {
@@ -28,6 +30,12 @@ class _LoginPageState extends State<LoginPage> {
       logger.d(event.email);
       logger.d(event.password);
     });
+  }
+
+  @override
+  void dispose() {
+    controller.loginStream.cancel();
+    super.dispose();
   }
 
   @override

@@ -1,4 +1,3 @@
-import 'package:flutter_event_bus/main.dart';
 import 'package:flutter_event_bus/shared/analytics/providers/base_analytic.provider.dart';
 
 import 'events/analytic.event.dart';
@@ -6,10 +5,7 @@ import 'events/analytic.event.dart';
 abstract class AnalyticProvider {
   late BaseAnalyticProvider provider;
   void setProvider(BaseAnalyticProvider analyticProvider);
-  Future<void> send({
-    required String name,
-    Map<String, String>? parameters,
-  });
+  Future<void> fire({required AnalyticEvent event});
 }
 
 class AnalyticProviderImpl implements AnalyticProvider {
@@ -26,12 +22,11 @@ class AnalyticProviderImpl implements AnalyticProvider {
   }
 
   @override
-  Future<void> send({
-    required String name,
-    Map<String, String>? parameters,
-  }) async {
-    events.on<AnalyticEvent>().listen((AnalyticEvent event) async {
-      await provider.send(name: event.name, parameters: event.parameters);
-    });
-  }
+  Future<void> fire({
+    required AnalyticEvent event,
+  }) async =>
+      provider.send(
+        name: event.name,
+        parameters: event.parameters,
+      );
 }
