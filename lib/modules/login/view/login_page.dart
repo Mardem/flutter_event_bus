@@ -18,9 +18,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   LoginController controller = inject<LoginController>();
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
-
   Logger logger = Logger();
 
   @override
@@ -80,11 +77,11 @@ class _LoginPageState extends State<LoginPage> {
                       children: <Widget>[
                         DSInput(
                           title: 'Email',
-                          controller: emailController,
+                          controller: controller.emailController,
                         ),
                         DSInput(
                           title: 'Password',
-                          controller: passController,
+                          controller: controller.passController,
                           obscure: true,
                         ),
                       ],
