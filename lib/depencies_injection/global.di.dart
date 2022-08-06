@@ -6,6 +6,9 @@ import 'package:flutter_event_bus/shared/analytics/providers/firebase/firebase_a
 void resolveDependencies() {
   inject.registerFactory<LoginController>(() => LoginControllerImpl());
 
+  /// Aqui o temos o Strategy Pattern funcionando, neste caso foi construído uma
+  /// implementação de FirebaseAnalytic mas pode ser usar qualquer uma outra apenas
+  /// respeitando a integridade da interface solicitada
   inject.registerSingleton<AnalyticProvider>(
     AnalyticProviderImpl(FirebaseAnalytic()),
   );

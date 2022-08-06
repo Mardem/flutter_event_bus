@@ -1,6 +1,7 @@
 import 'package:flutter_event_bus/shared/analytics/providers/base_analytic.provider.dart';
 import 'package:logger/logger.dart';
 
+/// Um exemplo simples de implementação do Stragegy junto com implementação real
 class FirebaseAnalytic implements BaseAnalyticProvider {
   @override
   Future<void> send({

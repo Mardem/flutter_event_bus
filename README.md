@@ -1,16 +1,10 @@
-# flutter_event_bus
+# Flutter Event Bus + Design Patterns
 
-A new Flutter project.
+O projeto foi criado para aplicar uma POC de baixo acoplamento junto com os conceitos de padrões de projetos.
 
-## Getting Started
+## Sobre o projeto
+Buscando soluções para baixo acoplamento e também simplificação de código encontrei o pacote [event_bus](https://pub.dev/packages/event_bus) muito usado para baixo acoplamento em arquitetura MVC.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Sendo assim, montei uma arquitetura MVC para poder fazer o teste desse carinha junto com outras implementações que já venho trabalhando:
+- GetIt para orquestramento de dependências
+- Strategy Pattern para flexibilidade de implementação, nesse caso usei no `AnalyticsProvider`

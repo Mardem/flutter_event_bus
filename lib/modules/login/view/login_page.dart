@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+
     controller.loginStream = events.on<LoginEvent>().listen((LoginEvent event) {
       logger.d(event.email);
       logger.d(event.password);
