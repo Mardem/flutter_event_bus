@@ -14,102 +14,13 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
-  Widget _submitButton() {
-    return Center(
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: <Color>[
-                    Color.fromARGB(255, 96, 8, 198),
-                    Color.fromARGB(255, 70, 6, 149),
-                    Color.fromARGB(255, 92, 43, 152),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.all(16.0),
-              primary: Colors.white,
-              textStyle: const TextStyle(fontSize: 20),
-            ),
-            onPressed: () {},
-            child: const Text('Sign in'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _createAccountLabel() {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20),
-        padding: const EdgeInsets.all(15),
-        alignment: Alignment.bottomCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'Create A New Account',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _title() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: const TextSpan(
-        text: 'Welcome back\n',
-        style: TextStyle(
-          fontSize: 30,
-          fontWeight: FontWeight.w700,
-          color: Colors.black,
-        ),
-        children: <InlineSpan>[
-          TextSpan(
-            text: 'Continue with Email',
-            style: TextStyle(
-              fontSize: 15.0,
-              color: Colors.grey,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _emailPasswordWidget() {
-    return Column(
-      children: <Widget>[
-        DSInput(
-          title: 'Email',
-          controller: emailController,
-        ),
-        DSInput(
-          title: 'Password',
-          controller: passController,
-          obscure: true,
-        ),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SizedBox(
-        height: height,
+        height: size.height,
         child: Stack(
           children: <Widget>[
             Container(
@@ -118,10 +29,41 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: height * .2),
-                    _title(),
+                    SizedBox(height: size.height * .2),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(
+                        text: 'Welcome back\n',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
+                        children: <InlineSpan>[
+                          TextSpan(
+                            text: 'Continue with Email',
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              color: Colors.grey,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                     const SizedBox(height: 50),
-                    _emailPasswordWidget(),
+                    Column(
+                      children: <Widget>[
+                        DSInput(
+                          title: 'Email',
+                          controller: emailController,
+                        ),
+                        DSInput(
+                          title: 'Password',
+                          controller: passController,
+                          obscure: true,
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 5),
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -135,9 +77,55 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    _submitButton(),
-                    SizedBox(height: height * .055),
-                    _createAccountLabel(),
+                    Center(
+                      child: Stack(
+                        children: <Widget>[
+                          Positioned.fill(
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: <Color>[
+                                    Color.fromARGB(255, 96, 8, 198),
+                                    Color.fromARGB(255, 70, 6, 149),
+                                    Color.fromARGB(255, 92, 43, 152),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsets.all(16.0),
+                              primary: Colors.white,
+                              textStyle: const TextStyle(fontSize: 20),
+                            ),
+                            onPressed: () {},
+                            child: const Text('Sign in'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: size.height * .055),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 20),
+                        padding: const EdgeInsets.all(15),
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Text(
+                              'Create A New Account',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_mobx: ^2.0.6+1
   mobx_codegen: ^2.0.7
+  event_bus: ^2.0.0
 
 dev_dependencies:
   flutter_test:
