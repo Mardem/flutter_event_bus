@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_event_bus/design_system/inputs/ds_input.dart';
+import 'package:flutter_event_bus/main.dart';
+import 'package:flutter_event_bus/modules/login/controller/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, this.title}) : super(key: key);
@@ -11,8 +13,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginController controller = inject<LoginController>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
