@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_event_bus/design_system/inputs/ds_input.dart';
 import 'package:flutter_event_bus/main.dart';
 import 'package:flutter_event_bus/modules/login/controller/login_controller.dart';
+import 'package:logger/logger.dart';
+
+import '../events/login_event.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, this.title}) : super(key: key);
@@ -13,6 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Logger logger = Logger();
   LoginController controller = inject<LoginController>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
@@ -20,6 +24,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    controller.loginStream = events.on<LoginEvent>().listen((LoginEvent event) {
+      logger.d(event.email);
+      logger.d(event.password);
+    });
   }
 
   @override
@@ -107,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                               primary: Colors.white,
                               textStyle: const TextStyle(fontSize: 20),
                             ),
-                            onPressed: () {},
+                            onPressed: () async => controller.login(),
                             child: const Text('Sign in'),
                           ),
                         ],

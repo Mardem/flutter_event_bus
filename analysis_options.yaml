@@ -37,6 +37,10 @@ analyzer:
     unnecessary_import: warning
     # Turned off until null-safe rollout is complete.
     unnecessary_null_comparison: ignore
+  exclude:
+    - "bin/cache/**"
+    - "dev/conductor/lib/proto/*"
+    - "android/**/**"
 
 linter:
   rules:
@@ -93,7 +97,6 @@ linter:
     - await_only_futures
     - camel_case_extensions
     - camel_case_types
-    - cancel_subscriptions
     # - cascade_invocations # doesn't match the typical style of this repo
     - cast_nullable_to_non_nullable
     # - close_sinks # not reliable enough
