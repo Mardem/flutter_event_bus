@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_event_bus/design_system/inputs/ds_input.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, this.title}) : super(key: key);
@@ -12,60 +13,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
-
-  Widget _entryEmailField(String title) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          TextField(
-            controller: emailController,
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              fillColor: Color(0xfff3f3f4),
-              filled: true,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _entryPasswordField(String title, {bool isPassword = false}) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          //name textfield
-          TextField(
-            controller: passController,
-            obscureText: isPassword,
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              fillColor: Color(0xfff3f3f4),
-              filled: true,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _submitButton() {
     return Center(
@@ -144,8 +91,15 @@ class _LoginPageState extends State<LoginPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryEmailField('Email'),
-        _entryPasswordField('Password', isPassword: true),
+        DSInput(
+          title: 'Email',
+          controller: emailController,
+        ),
+        DSInput(
+          title: 'Password',
+          controller: passController,
+          obscure: true,
+        ),
       ],
     );
   }
